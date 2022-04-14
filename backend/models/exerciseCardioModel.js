@@ -2,10 +2,16 @@ const mongoose = require('mongoose')
 
 const exerciseCardioSchema = mongoose.Schema(
   {
-    user: {
+    userwoid: {
        type: mongoose.Schema.Types.ObjectId,
        required: true,
        ref: 'Workout',
+    },
+    userid:{
+      type: mongoose.Schema.Types.ObjectId,
+       required: true,
+       ref: 'User',
+
     },
     text: {
       type: String,

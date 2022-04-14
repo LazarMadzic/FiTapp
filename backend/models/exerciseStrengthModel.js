@@ -2,10 +2,16 @@ const mongoose = require('mongoose')
 
 const exerciseStrengthSchema = mongoose.Schema(
   {
-    user: {
+    userwoid: {
        type: mongoose.Schema.Types.ObjectId,
        required: true,
        ref: 'Workout',
+    },
+    userid:{
+      type: mongoose.Schema.Types.ObjectId,
+       required: true,
+       ref: 'User',
+
     },
     text: {
       type: String,
@@ -13,13 +19,16 @@ const exerciseStrengthSchema = mongoose.Schema(
     },
     sets:{
         type: Number,
+        required: [true, 'Please add a text value'],
 
     },
     reps:{
         type: Number,
+        required: [true, 'Please add a text value'],
     },
-    weigth:{
+    weight:{
       type: Number,
+      required: [true, 'Please add a text value'],
   },
   },
   {

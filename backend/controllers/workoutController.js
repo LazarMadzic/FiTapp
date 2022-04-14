@@ -2,6 +2,8 @@ const asyncHandler = require('express-async-handler')
 
 const Workout =require('../models/workoutModel')
 const User =require('../models/userModel')
+const Strength = require('../models/exerciseStrengthModel')
+const Cardio = require('../models/exerciseCardioModel')
 
 // @desc    Get Workout
 // @route   GET /api/workouts
@@ -71,11 +73,31 @@ const deleteWorkout =asyncHandler( async(req,res) =>{
     
     if(!wo){
         res.status(400)
-
+        
         throw new Error('Workout not found')
     }
     
-     
+    const st = await Strength.find({userwoid: req.params.id}); 
+    if(st.length!==0){
+        for (index = 0; index < st.length; index++) {
+            const st_temp = await Strength.findById(st[index].id.toString())
+            await st_temp.remove()
+        }
+
+
+    }
+    const ca = await Cardio.find({userwoid: req.params.id});
+    if(st.length!==0){
+        for (index = 0; index < ca.length; index++) {
+            const ca_temp = await Cardio.findById(ca[index].id.toString())
+            await ca_temp.remove()
+        }
+
+
+    }
+    
+    
+    
     const user = await User.findById(req.user.id)
 
     //Check for user

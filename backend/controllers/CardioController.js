@@ -9,7 +9,17 @@ const User =require('../models/userModel')
 // @route   GET /api/cardios
 // @access  Private
 const getCardios =asyncHandler( async(req,res) =>{
-    const ca= await Cardio.find({user: req.body.id})
+
+    const ca= await Cardio.find({userwoid: req.body.id})
+    
+    if(ca.length>=1){
+
+        if (req.user.id.toString() !== ca[0].userid.toString()) {
+            res.status(401)
+            throw new Error('User not authorized')
+        }
+    }
+
 
 
 
@@ -27,7 +37,8 @@ const setCardio =asyncHandler( async(req,res) =>{
     }
     const ca = await Cardio.create({
         text:req.body.text,
-        user:req.body.id,
+        userid:req.user.id,
+        userwoid:req.body.userwoid,
         distance:req.body.dis,
         duration:req.body.time,
         pace:req.body.pace,
@@ -45,7 +56,7 @@ const updateCardio =asyncHandler( async(req,res) =>{
     if(!ca){
         res.status(400)
 
-        throw new Error('Workout not found')
+        throw new Error('Exercise not found')
     }
     
     const user = await User.findById(req.user.id)
@@ -56,12 +67,9 @@ const updateCardio =asyncHandler( async(req,res) =>{
         throw new Error('User not found')
 
     }
-    console.log("---")
-    console.log(req.user.id)
-    console.log(user.id)
-    console.log(req.user.toString())
+    
     // Make sure the logged in user matches the goal user
-    if (req.user.id.toString() !== user.id) {
+    if (req.user.id.toString() !== ca.userid.toString()) {
         res.status(401)
         throw new Error('User not authorized')
     }
@@ -80,15 +88,12 @@ const deleteCardio =asyncHandler( async(req,res) =>{
     if(!ca){
         res.status(400)
 
-        throw new Error('Workout not found')
+        throw new Error('Exercise not found')
     }
     
      
     const user = await User.findById(req.user.id)
-    console.log("---")
-    console.log(req.user.id)
-    console.log(user.id)
-    console.log(ca.user.toString())
+    
     //Check for user
     if(!user){
         res.status(401)
@@ -97,7 +102,7 @@ const deleteCardio =asyncHandler( async(req,res) =>{
     }
 
     // Make sure the logged in user matches the goal user
-    if (req.user.id.toString() !== user.id) {
+    if (req.user.id.toString() !== ca.userid.toString()) {
         res.status(401)
         throw new Error('User not authorized')
     }
