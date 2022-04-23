@@ -11,11 +11,12 @@ function WorkoutForm() {
 
     const onSubmit = (e) => {
         e.preventDefault()
-    
+
         dispatch(createWorkout({ text }))
         setText('')
       }
-
+  
+      
 
   return (
     <section className='form'>

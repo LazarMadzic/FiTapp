@@ -23,7 +23,7 @@ const updateWorkout= async(workoutId,workoutData, token) =>{
     },
   }
 
-  
+  console.log(workoutData)
   const response = await axios.put(API_URL+ workoutId,{text:workoutData}, config)
 
   return response.data

@@ -31,19 +31,20 @@ const getCardios =asyncHandler( async(req,res) =>{
 // @access  Private
 const setCardio =asyncHandler( async(req,res) =>{
 
-    if (!req.body.text) {
+    if (!req.body.text_ex) {
         res.status(400)
         throw new Error('Please add a text field')
     }
+    
     const ca = await Cardio.create({
-        text:req.body.text,
+        text_ex:req.body.text,
         userid:req.user.id,
         userwoid:req.body.userwoid,
         distance:req.body.dis,
         duration:req.body.time,
         pace:req.body.pace,
     } )
-
+    console.log(ca.userid)
     res.status(200).json(ca)
 })
 

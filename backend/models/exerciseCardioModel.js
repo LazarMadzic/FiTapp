@@ -13,7 +13,7 @@ const exerciseCardioSchema = mongoose.Schema(
        ref: 'User',
 
     },
-    text: {
+    text_exS: {
       type: String,
       required: [true, 'Please add a text value'],
     },

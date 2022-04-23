@@ -1,0 +1,101 @@
+.exercise-form{
+    width:800px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    
+}
+
+.exercise-form button{
+    margin-right: 60px;
+    
+}
+
+.btn-ex{
+    width:auto;
+    padding: 5px 10px;
+    border: 1px solid #4d3ca6;
+    border-radius: 55px;
+    background: #181818;
+    color: white;
+    font-size: 20px;
+    font-weight: 900;
+    cursor: pointer;
+    text-align: center;
+    appearance: button;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   
+    text-align: center;
+
+}
+
+.btn-ex.active{
+    width:auto;
+    padding: 5px 10px;
+    border: 1px solid #d4ff2a;
+    border-radius: 55px;
+    background: #181818;
+    color: white;
+    font-size: 20px;
+    font-weight: 900;
+    cursor: pointer;
+    text-align: center;
+    appearance: button;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    text-align: center;
+
+}
+
+.btn-ex-add{
+    width: 30%;
+    padding: 5px 10px;
+    border: 1px solid #a59adc;
+    border-radius: 55px;
+    background: #181818;
+    color: white;
+    font-size: 20px;
+    font-weight: 900;
+    cursor: pointer;
+    text-align: center;
+    appearance: button;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+    text-align: center;
+    margin-left:40px;
+    margin-bottom: 40px;
+
+}
+
+.btn-ex:hover{
+    color:#4d3ca6;
+
+}
+
+.btn-ex.active:hover{
+    color:#d4ff2a;
+
+}
+
+.btn-exrcise{
+  display: flex;
+  align-items: start;
+    justify-content:start;  
+}
+
+
+@media (max-width: 600px) {
+    .btn-ex-add{
+        width: 60%;}
+    
+    .exercise-form{
+        width: 80%;
+    }
+    
+}
